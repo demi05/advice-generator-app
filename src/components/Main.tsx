@@ -40,11 +40,6 @@ const Main = () => {
       });
   };
 
-  const glow = keyframes`
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.5); }
-  `
-
   return (
     <Flex
       flexDir={"column"}
@@ -104,7 +99,7 @@ const Main = () => {
           bottom={"-25px"}
           height={"50px"}
           transition="all 0.3s ease-in-out"
-          _hover={{animation: `${glow} 1s`}}
+          _hover={{boxShadow: "0 0 20px hsl(150, 100%, 66%)"}}
         >
           <Image src={diceIcon} fontSize={"2rem"} />
         </Flex>
