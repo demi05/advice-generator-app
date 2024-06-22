@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Spinner, Text, keyframes, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, Image, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
 import diceIcon from "../assets/images/icon-dice.svg";
 import patternDividerDesktop from "../assets/images/pattern-divider-desktop.svg";
 import patternDividerMobile from "../assets/images/pattern-divider-mobile.svg";
