@@ -1,9 +1,16 @@
-import { Box, Flex, Image, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Image,
+  Spinner,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import diceIcon from "../assets/images/icon-dice.svg";
 import patternDividerDesktop from "../assets/images/pattern-divider-desktop.svg";
 import patternDividerMobile from "../assets/images/pattern-divider-mobile.svg";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Main = () => {
   const patternDividerSrc = useBreakpointValue({
@@ -11,8 +18,8 @@ const Main = () => {
     sm: patternDividerMobile,
     md: patternDividerDesktop,
     lg: patternDividerDesktop,
-    xl: patternDividerDesktop
-  })
+    xl: patternDividerDesktop,
+  });
 
   type SlipType = {
     advice: string;
@@ -25,6 +32,7 @@ const Main = () => {
   const [advicee, setAdvicee] = useState<AdviceType>({});
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const fetchAdvice = () => {
     setIsLoading(true);
     axios
@@ -38,6 +46,14 @@ const Main = () => {
         setError("Error fetching advice. Please try again");
         setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchAdvice();
+  }, []);
+
+  const handleClick = () => {
+    fetchAdvice();
   };
 
   return (
@@ -71,7 +87,8 @@ const Main = () => {
             <Text
               color={"hsl(193, 38%, 86%)"}
               fontSize={"2rem"}
-              textAlign={"center"} maxW={["400px", "500px", "600px", "600px"]}
+              textAlign={"center"}
+              maxW={["400px", "500px", "600px", "600px"]}
             >
               "{advicee.slip.advice}"
             </Text>
@@ -82,14 +99,14 @@ const Main = () => {
 
         <Flex justifyContent={"center"} alignItems={"center"}>
           <Box>
-            <Image src= {patternDividerSrc} w={"100%"} fontWeight={900} />
+            <Image src={patternDividerSrc} w={"100%"} fontWeight={900} />
           </Box>
         </Flex>
 
         <Flex
           alignItems={"center"}
           justifyContent={"center"}
-          onClick={() => fetchAdvice()}
+          onClick={() => handleClick()}
           backgroundColor={"hsl(150, 100%, 66%)"}
           padding={"0.5em"}
           borderRadius={"50%"}
@@ -99,7 +116,7 @@ const Main = () => {
           bottom={"-25px"}
           height={"50px"}
           transition="all 0.3s ease-in-out"
-          _hover={{boxShadow: "0 0 20px hsl(150, 100%, 66%)"}}
+          _hover={{ boxShadow: "0 0 20px hsl(150, 100%, 66%)" }}
         >
           <Image src={diceIcon} fontSize={"2rem"} />
         </Flex>
