@@ -98,13 +98,13 @@ const Main = () => {
           backgroundColor={"hsl(150, 100%, 66%)"}
           padding={"0.5em"}
           borderRadius={"50%"}
-          width={"10%"}
+          width={["15%", "12.5%", "10%", "10%"]}
           cursor={"pointer"}
           pos={"absolute"}
           bottom={"-25px"}
           height={"50px"}
           transition="all 0.3s ease-in-out"
-          _hover={{animation: `${glow} 1s infinite`}}
+          _hover={{animation: `${glow} 1s`}}
         >
           <Image src={diceIcon} fontSize={"2rem"} />
         </Flex>
